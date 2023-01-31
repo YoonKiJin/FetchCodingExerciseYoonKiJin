@@ -1,3 +1,6 @@
 import pandas as pd
+import csv
 
-print("Hello World")
+df = pd.read_csv("transactions.csv")
+
+print(df)
