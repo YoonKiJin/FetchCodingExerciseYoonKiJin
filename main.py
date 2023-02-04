@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 """
                             Some notes about my program:
@@ -12,28 +13,11 @@ and so requires an environment in which
 
 
 
+please run argument as              e.g.           python3 main.py 5000
+
+(the name of the Python file is main.py)
 
 
-
-
-
-The tester is only required to change the value for the points to be spent
-this can be done so by changing the value of the variable 
-    points_to_spend
-which can be seen near the bottom of the program
-    (it is currently set at 5000 following the example)
-    
-    
-(I wasn't exactly sure what kind of method would be used to pass in the argument when running the program.
-So, I decided to keep things as simple as possible and require the tester to only change a variable value to test
-the program)
-
-
-once the value of
-    points_to_spend
-is changed to fit the tester's desired value, assuming the csv file's data is in the same format as given by the
-example, the tester simply has to run the code and the results should be printed out
-        
 """
 
 
@@ -64,7 +48,7 @@ def get_payer_balances_after_all_transactions(points_to_spend, csv_file_name="tr
         curr_payer_points = payers_and_points[curr_row_payer]  # updated value of current data record payer's points
 
         if curr_payer_points < 0:  # check if current payer's points has gone negative after updating based on current data record
-            points_to_spend += abs(curr_payer_points)  #
+            points_to_spend += abs(curr_payer_points)
             payers_and_points[curr_row_payer] = 0  # reset to 0
         else:
             points_to_spend -= curr_payer_points
@@ -83,6 +67,7 @@ def get_payer_balances_after_all_transactions(points_to_spend, csv_file_name="tr
 
 
 
-points_to_spend = 5000 # please change this value of 5000 from the example to fit the testing value of "points to spend"
+points_to_spend = int(sys.argv[1])
 
 get_payer_balances_after_all_transactions(points_to_spend=points_to_spend, csv_file_name="transactions.csv")
+
